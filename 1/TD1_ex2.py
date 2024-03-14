@@ -1,8 +1,9 @@
-def word_initialization(words:list,text:str):
+def word_initialization(text:str):
     """
     fonction that return a list of words with 8 or less letters 
     from a external sources.
     """
+    words=[]
     file = open(text,'r')
     for line in file:
         if len(line[0:len(line)-1])<=8:
@@ -24,5 +25,8 @@ def possible_word(word:str,letters:list):
         else:
             letters.pop(letters.index(word_letter[i]))
     return(True)
+
+###############################################################################
+words=word_initialization("mots.sansaccent.txt")
 
 
