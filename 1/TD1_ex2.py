@@ -14,8 +14,7 @@ def word_initialization(text:str):
 
 def possible_word(word:str,letters:list):
     """
-    Returns
-    True if the word could be write with the element of letters.
+    Returns True if the word could be writen with the elements of letters.
     -------
     """
     word_letter=list(word)
@@ -26,7 +25,34 @@ def possible_word(word:str,letters:list):
             letters.pop(letters.index(word_letter[i]))
     return(True)
 
+def longest_word(words:list,letters:list):
+    """
+    Parameters
+    ----------
+    words : list of string
+        words available
+    letters : list of string
+        letters available
+        
+    Returns the longest words with the available letters.
+    -------
+    """
+    longest=''
+    for i in range(len(words)):
+        copy_letters=letters.copy()
+        if len(longest)==8:
+            return(longest)
+        elif possible_word(words[i], copy_letters) and len(longest)<len(words[i]):
+            longest=words[i]
+    return(longest)
+            
+    
+    
+    
+    
 ###############################################################################
 words=word_initialization("mots.sansaccent.txt")
-
+letters=['o','s','o','u','s','i','n','r']
+longest=longest_word(words, letters)
+print(longest)
 
