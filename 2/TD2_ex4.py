@@ -105,8 +105,7 @@ def Leibniz(n):
     result=Fraction(1,1)
     for itteration in range(1,n+1):
         result=result.add(Fraction((-1)**itteration,2*itteration+1))
-        result=result.simplify()
-    return(result)
+    return(result.simplify())
 
 def Leibniz_verify(n):
     assert n>0 and type(n)==int

@@ -103,8 +103,7 @@ def H(n):
     result=Fraction(1,1)
     for itteration in range(2,n+1):
         result=result.add(Fraction(1,itteration))
-        result=result.simplify()
-    return(result)
+    return(result.simplify())
 
 def H_verify(n):
     """
