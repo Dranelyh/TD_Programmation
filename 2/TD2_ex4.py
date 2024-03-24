@@ -4,7 +4,7 @@ class Fraction():
     arguments:
         numerator : int
         denominator: int
-    Automatically print the fraction as (numerator / denominator)
+    Print the fraction as (numerator / denominator)
     """
     def __init__(self,numerator,denominator):
         if type(numerator)!=int or type(denominator)!=int:
@@ -14,7 +14,6 @@ class Fraction():
             
         self.__numerator=numerator
         self.__denominator=denominator
-        print('('+str(self.__numerator) +' / '+ str(self.__denominator)+')')
     
     def numerator(self):
         return self.__numerator
@@ -84,21 +83,42 @@ class Fraction():
         return(Fraction(self.__numerator//biggest_number,
                         self.__denominator//biggest_number))
         
-        
     def __eq__(self,other_fraction):
-        if type(other_fraction)!=type(self):
-            raise ValueError('Other fraction must be a fraction')
-        return(self.__numerator/self.__denominator == 
-            other_fraction.__numerator/other_fraction.__denominator)
-
+         if type(other_fraction)!=type(self):
+             raise ValueError('Other fraction must be a fraction')
+         return(self.__numerator/self.__denominator == 
+             other_fraction.__numerator/other_fraction.__denominator)
 ###############################################################################
-if __name__=='__main__':
-    fraction_1=Fraction(2,4)
-    fraction_2=Fraction(2,3)
-    fraction_3=fraction_1.add(fraction_2)
-    fraction_4=fraction_1.mult(fraction_2)
+def Leibniz(n):
+    """
+    Parameters
+    ----------
+    n : int
+        number of itterations
+
+    Returns
+    -------
+    The value of the Leibniz formula for n itterations
+    """
+    assert n>0 and type(n)==int
     
-    assert fraction_1.add(fraction_2)==Fraction(14,12)
-    assert fraction_1.mult(fraction_2)==Fraction(4,12)
-    assert fraction_1.simplify()==Fraction(1,2)
+    result=Fraction(1,1)
+    for itteration in range(1,n+1):
+        result=result.add(Fraction((-1)**itteration,2*itteration+1))
+        result=result.simplify()
+    return(result)
+
+def Leibniz_verify(n):
+    assert n>0 and type(n)==int
+    
+    result=0
+    for itteration in range(n+1):
+        result+=(-1)**itteration/(2*itteration+1)
+    return(result)
+
+if __name__=='__main__':
+    fraction_leibniz=Leibniz(10000)
+    function_leibniz=Leibniz_verify(10000)
+    assert (str(fraction_leibniz.numerator()/fraction_leibniz.denominator())[:10]
+            ==str(function_leibniz)[:10])
 

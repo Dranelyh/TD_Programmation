@@ -1,4 +1,12 @@
 class Fraction():
+    """
+    class : Fraction(numerator,denominator)
+    arguments:
+        numerator : int
+        denominator: int
+    Automatically print the fraction as (numerator / denominator)
+    """
+    
     def __init__(self,numerator,denominator):
         if type(numerator)!=int or type(denominator)!=int:
             raise ValueError('Values must be integer')
@@ -14,11 +22,8 @@ class Fraction():
     def denominator(self):
         return self.__denominator
     
-
-    
-    
-    
+###############################################################################
 if __name__=='__main__':
     fraction_1=Fraction(1,2)
-    fraction_2=Fraction(3,2)
-    fraction_4=Fraction(1,0)
+
+        
